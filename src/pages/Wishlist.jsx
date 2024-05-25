@@ -11,7 +11,7 @@ function Wishlist() {
   return (
     <div>
         <div>
-            {stocks && <StockList stocks={stocks} />}
+            {stocks ? <StockList stocks={stocks} /> : <div className='w-screen h-screen items-center justify-center'>No items Wishlisted, please add some stocks!</div>}
         </div>
     </div>
   )

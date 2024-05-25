@@ -14,7 +14,7 @@ import {
     CircularProgress,
 } from "@mui/material";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import HomeIcon from '@mui/icons-material/Home';
+import HomeIcon from "@mui/icons-material/Home";
 import StarIcon from "@mui/icons-material/Star";
 import SearchBox from "./SearchBox";
 import Store from "../contexts/Store";
@@ -96,9 +96,14 @@ const StockList = ({ stocks, type }) => {
                             <Link
                                 to={"/"}
                                 className="text-black hover:text-blue-500 text-lg items-center px-1 sm:px-4 flex gap-2"
-                                onClick={()=>{setSearchQuery("")}}
+                                onClick={() => {
+                                    setSearchQuery("");
+                                }}
                             >
-                              <HomeIcon fontSize="large" color="primary"></HomeIcon>
+                                <HomeIcon
+                                    fontSize="large"
+                                    color="primary"
+                                ></HomeIcon>
                                 Home
                             </Link>
                         </>
@@ -107,7 +112,9 @@ const StockList = ({ stocks, type }) => {
                             <Link
                                 to={"/wishlist"}
                                 className="text-black hover:text-blue-500 text-lg items-center px-1 sm:px-4 flex gap-2"
-                                onClick={()=>{setSearchQuery("")}}
+                                onClick={() => {
+                                    setSearchQuery("");
+                                }}
                             >
                                 <StarIcon
                                     fontSize="large"
@@ -123,9 +130,7 @@ const StockList = ({ stocks, type }) => {
                     setSearchQuery={setSearchQuery}
                 />
             </div>
-            <TableContainer
-                sx={{maxHeight: "72vh" }}
-            >
+            <TableContainer sx={{ maxHeight: "72vh" }}>
                 <Table stickyHeader>
                     <TableHead>
                         <TableRow>
@@ -162,10 +167,21 @@ const StockList = ({ stocks, type }) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
+                        {filteredStocks.length < 1 && (
+                          <TableCell colSpan={4}>
+                            <p className="items-center justify-center flex">
+                                No Stocks!
+                            </p>
+                            </TableCell>
+                        )}
+
                         {pageLoading ? (
+                          <TableCell colSpan={4}>
                             <div className="flex justify-center items-center">
+                              
                                 <CircularProgress />
                             </div>
+                            </TableCell>
                         ) : (
                             <>
                                 {paginatedStocks.map((stock) => (
