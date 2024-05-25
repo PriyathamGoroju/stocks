@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Routers from "./common/Routers";
+import Store from "./contexts/Store";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [stocks, setStocks] = useState();
+    const [searchQuery, setSearchQuery] = useState("");
+    const [page, setPage] = useState(0);
+    return (
+        <Store.Provider value={{stocks, setStocks, searchQuery, setSearchQuery, page, setPage}}>
+            <BrowserRouter>
+                <Routers />
+                <ToastContainer
+                    position="top-right"
+                    autoClose={4000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
+            </BrowserRouter>
+        </Store.Provider>
+    );
+};
 
 export default App;
