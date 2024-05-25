@@ -25,6 +25,7 @@ const StockList = ({ stocks, type }) => {
     const [wishlist, setWishlist] = useState([]);
     const { searchQuery, setSearchQuery, page, setPage } = useContext(Store);
     const [pageLoading, setPageLoading] = useState(false);
+    console.log(stocks)
 
     const handleChangePage = (event, newPage) => {
         setPageLoading(true);
